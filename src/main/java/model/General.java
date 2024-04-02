@@ -17,7 +17,7 @@ public class General {
 	
 	public static void sendMail(String title, String msg, String receiving) {
     	final String username = "auctionhousejava@gmail.com";
-        final String password = "mxjb hint zyzf fbsn";
+        final String password = "shhh! thats secret!";
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
