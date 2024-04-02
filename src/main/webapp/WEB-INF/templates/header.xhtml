@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+	    <ui:composition>
+	    	<h:form rendered="#{generalBean.isConnected()}" style="width:30%; margin-left:35%;">
+	    		<p:toolbar>
+	    			<p:toolbarGroup align="left">
+		    			<p:menuButton value="AUCTIONS" style="padding: 0px 10px;">
+		    				<p:menuitem value="ongoing" action="ongoingAuctions.xhtml"/>
+		    				<p:divider/>
+		    				<p:menuitem value="my ongoing" action="myOngoingAuctions.xhtml"/>
+		    				<p:menuitem value="my history" action="myAuctionsHistory.xhtml"/>
+		    				<p:divider/>
+		    				<p:menuitem value="new" action="newAuction.xhtml"/>
+		    			</p:menuButton>
+	    				<p:menuButton value="BIDS">
+		    				<p:menuitem value="my ongoing" action="myOngoingBiddings.xhtml"/>
+		    				<p:menuitem value="my history" action="myBiddingsHistory.xhtml"/>
+		    				<p:menuitem value="my winnings" action="myWinningBids.xhtml"/>
+		    			</p:menuButton>
+	    			</p:toolbarGroup>
+	    			<p:toolbarGroup align="right" style="padding: 0px 10px;">
+	    				<p:menuButton value="#{generalBean.user.fullName}">
+		    				<p:menuitem value="profile" action="profile.xhtml"/>
+		    				<p:divider/>
+		    				<p:menuitem value="log out" action="#{generalBean.logout()}"/>
+		    			</p:menuButton>
+	    			</p:toolbarGroup>
+	    		</p:toolbar>
+			</h:form>
+	    </ui:composition>
+    </body>
+</html>

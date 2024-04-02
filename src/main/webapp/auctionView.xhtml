@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	<ui:composition template="/WEB-INF/templates/master.xhtml">
+			<ui:define name="content">
+				<h:form id="form">
+	    			<div style="width:100%;">
+						<h:commandButton class="goBack" value="&#8249;" immediate="true" action="#{auctionViewBean.getBackButton()}"/><br/>
+					</div>
+	    			<h:outputText class="h1" value="#{auctionViewBean.selected.name}"/>
+	    			<table class="table" style="text-align:center;">
+						<tr>
+							<td>
+								<h:panelGrid columns="2">
+									<h:outputText value="Category:"/>
+									<h:outputText value="#{auctionViewBean.selected.name}"/>
+									<h:outputText value="Description:"/>
+									<h:outputText value="#{auctionViewBean.selected.description}"/>
+									<h:outputText value="Starting Price:"/>
+									<h:outputText value="#{auctionViewBean.selected.startPrice}"/>
+									<h:outputText value="Highest Bid:"/>
+									<h:outputText value="#{auctionViewBean.getSelectedItemMaxBidString()}"/>
+									<h:outputText value="Number of Bids:"/>
+									<h:outputText value="#{auctionViewBean.selected.getNumberOfBidsString()}"/>
+									<h:outputText value="User Sold To:" rendered="#{auctionViewBean.isViewHistory()}"/>
+									<h:outputText value="#{auctionViewBean.selected.user.fullName}" rendered="#{auctionViewBean.isViewHistory()}"/>
+									<h:outputText value="Email:" rendered="#{auctionViewBean.isViewHistory()}"/>
+									<h:outputText value="#{auctionViewBean.selected.user.email}" rendered="#{auctionViewBean.isViewHistory()}"/>
+									<h:outputText value="Phone Numebr:" rendered="#{auctionViewBean.isViewHistory()}"/>
+									<h:outputText value="#{auctionViewBean.selected.user.cellNumber}" rendered="#{auctionViewBean.isViewHistory()}"/>
+									<h:outputText value="Start Date:"/>
+									<h:outputText value="#{auctionViewBean.selected.startDate}"/>
+									<h:outputText value="End Date:"/>
+									<h:outputText value="#{auctionViewBean.selected.endDate}"/>
+								</h:panelGrid>
+							</td>
+							<td>
+								<h:graphicImage class="image" value="#{auctionViewBean.selected.getImagePath()}"/><br/><br/>
+							</td>
+						</tr>
+					</table>
+					<br/>
+					<h:commandButton class="button" style="width:100px; margin:5px;" value="terminate" action="#{auctionView.terminateAuction()}" rendered="#{auctionViewBean.isViewOngoing()}"/>
+					<h:commandButton class="button" style="width:100px; margin:5px;" value="delete" action="#{auctionView.deleteAuction}" rendered="#{auctionViewBean.isViewOngoing()}"/><br/>
+					<h:outputText value="Place a new bid:" rendered="#{auctionViewBean.isViewPlaceBid()}"/>
+					<h:outputText value=" (next legal bid- #{auctionViewBean.getNextLegalBid()})" rendered="#{auctionViewBean.isViewPlaceBid()}"/><br/>
+					<p:inputText value="#{auctionViewBean.bid}" rendered="#{auctionViewBean.isViewPlaceBid()}"/><br/>
+					<h:outputText value="illegal bid! please insert a legal value." rendered="#{auctionViewBean.isIllegal}"/><br/>
+					<h:commandButton class="button" value="place bid!" update="@form" actionListener="#{ongoingAuctionsBean.reloadOngoing()}" action="#{auctionViewBean.placeBidActionListener()}" rendered="#{auctionViewBean.isViewPlaceBid()}"/><br/><br/>
+					<h:commandButton class="button" value="auto-bid" actionListener="#{ongoingAuctionsBean.reloadOngoing()}" action="autoBidOptions.xhtml" rendered="#{auctionViewBean.isViewPlaceBid()}"/>
+	    		</h:form>
+    		</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>

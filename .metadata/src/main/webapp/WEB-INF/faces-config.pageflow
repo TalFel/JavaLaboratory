@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17104919083220" configfile="/AuctionJavax/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="signIn.xhtml" x="528" y="96" id="pf17105398266945" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf17105398266946 pf17105795578678" inlinks="pf171059484515911" path="/signIn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="signUp.xhtml" x="228" y="96" id="pf17105398266957" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf171059329126610 pf171059484515911" inlinks="pf17105398266946" path="/signUp.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ongoingAuctions.xhtml" x="348" y="255" id="pf17105795578679" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" outlinks="pf17112889724010" inlinks="pf17105795578678 pf171059329126610 pf17112889724021" path="/ongoingAuctions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="myOngoingAuctions.xhtml" x="684" y="144" id="pf17109658772110" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf17110391094534" inlinks="pf17110391094535" path="/myOngoingAuctions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="myAuctionsHistory.xhtml" x="900" y="48" id="pf17110325920443" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf17110391094536" inlinks="pf17110391094537" path="/myAuctionsHistory.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="auctionView.xhtml" x="918" y="264" id="pf17110391094538" referenceLink="//@navigationRule.15/@fromViewId|" outlinks="pf17110391094535 pf17110391094537 pf17111141207759 pf17111225937723 pf17111210690350 pf17112889724021 pf17119126562230" inlinks="pf17110391094536 pf17110391094534 pf171111412077510 pf17111225937724 pf17111210690371 pf17112889724010 pf17119126562241" path="/auctionView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="myBiddingsHistory.xhtml" x="1128" y="144" id="pf171111412077511" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf171111412077510" inlinks="pf17111141207759" path="/myBiddingsHistory.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="myOngoingBiddings.xhtml" x="896" y="456" id="pf17111210690372" referenceLink="//@navigationRule.13/@fromViewId|" outlinks="pf17111210690371" inlinks="pf17111210690350" path="/myOngoingBiddings.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="myWinningBids.xhtml" x="1152" y="348" id="pf17111225937725" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf17111225937724" inlinks="pf17111225937723" path="/myWinningBids.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="autoBidOptions.xhtml" x="672" y="391" id="pf17119126562242" outlinks="pf17119126562241" inlinks="pf17119126562230" path="/autoBidOptions.xhtml"/>
+  <links id="pf17105398266946" target="pf17105398266957" source="pf17105398266945" outcome="signUp.xhtml"/>
+  <links id="pf17105795578678" target="pf17105795578679" source="pf17105398266945" outcome="ongoingAuctions.xhtml"/>
+  <links id="pf171059329126610" target="pf17105795578679" source="pf17105398266957" outcome="ongoingAuctions.xhtml"/>
+  <links id="pf171059484515911" target="pf17105398266945" source="pf17105398266957" outcome="signIn.xhtml"/>
+  <links id="pf17110391094536" target="pf17110391094538" source="pf17110325920443" outcome="auctionView.xhtml"/>
+  <links id="pf17110391094534" target="pf17110391094538" source="pf17109658772110" outcome="auctionView.xhtml"/>
+  <links id="pf17110391094535" target="pf17109658772110" source="pf17110391094538" outcome="myOngoingAuctions.xhtml"/>
+  <links id="pf17110391094537" target="pf17110325920443" source="pf17110391094538" outcome="myAuctionsHistory.xhtml"/>
+  <links id="pf171111412077510" target="pf17110391094538" source="pf171111412077511" outcome="auctionView.xhtml"/>
+  <links id="pf17111141207759" target="pf171111412077511" source="pf17110391094538" outcome="myBiddingsHistory.xhtml"/>
+  <links id="pf17111225937724" target="pf17110391094538" source="pf17111225937725" outcome="auctionView.xhtml"/>
+  <links id="pf17111225937723" target="pf17111225937725" source="pf17110391094538" outcome="myWinningBids.xhtml"/>
+  <links id="pf17111210690350" target="pf17111210690372" source="pf17110391094538" outcome="myOngoingBiddings.xhtml"/>
+  <links id="pf17111210690371" target="pf17110391094538" source="pf17111210690372" outcome="auctionView.xhtml"/>
+  <links id="pf17112889724010" target="pf17110391094538" source="pf17105795578679" outcome="auctionView.xhtml"/>
+  <links id="pf17112889724021" target="pf17105795578679" source="pf17110391094538" outcome="ongoingAuctions.xhtml"/>
+  <links id="pf17119126562241" target="pf17110391094538" source="pf17119126562242" outcome="auctionView.xhtml"/>
+  <links id="pf17119126562230" target="pf17119126562242" source="pf17110391094538" outcome="autoBidOptions.xhtml"/>
+</pageflow:Pageflow>

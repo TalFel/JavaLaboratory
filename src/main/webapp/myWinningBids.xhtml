@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	<ui:composition template="/WEB-INF/templates/master.xhtml">
+			<ui:define name="content">
+				<h:form>
+	    			<h1>My Winning Bids</h1>
+	    			<p:dataTable value = "#{generalBean.userWinsHistory}" var = "bid"
+	    				emptyMessage="looks like you have no winning bids" rows="10"
+                     paginator="true" paginatorPosition="bottom"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+			            
+			            <p:column headerText="Item Name" style="width:100px;">
+							<h:outputText value="#{bid.item.name}" />
+			            </p:column>
+			            
+			            <p:column headerText="Category Name" style="width:100px;">
+			            	<h:outputText value="#{bid.item.category}" />
+			            </p:column>
+			            
+			            <p:column headerText="Your Bid" style="width:100px;">
+			            	<h:outputText value="#{bid.price}" />
+			            </p:column>
+			            
+			            <p:column headerText="Bid Date" style="width:100px;">
+			            	<h:outputText value="#{bid.date}" />
+			            </p:column>
+			            
+			            <p:column headerText="-----" style="width:37px;">
+			            	<h:commandLink value="view details" actionListener="#{auctionViewBean.setItemActionListener(bid.item.getStringId(), generalBean.getWinningBidsSource())}" action="auctionView.xhtml"/>
+			            </p:column>
+			         </p:dataTable>
+	    		</h:form>
+    		</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>

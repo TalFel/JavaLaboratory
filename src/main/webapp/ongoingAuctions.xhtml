@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"  
+	  xmlns:f="http://java.sun.com/jsf/core"  
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	<ui:composition template="/WEB-INF/templates/master.xhtml">
+			<ui:define name="content">
+				<h:form style="width:100%;">
+	    			<h1>Ongoing Auctions</h1><br/>
+	    			<h:outputText value="Search by item or category"/><br/>
+	    			<p:inputText value="#{ongoingAuctionsBean.search}"/><br/><br/>
+	    			<h:commandButton class="button" style="width:100px; margin:5px;" value="search" type="submit" update="form" actionListener="#{ongoingAuctionsBean.searchActionListener()}" action="ongoingAuctions.xhtml"/>
+	    			<h:commandButton class="button" style="width:100px; margin:5px;" value="clear" type="submit" update="form" actionListener="#{ongoingAuctionsBean.clearActionListener()}" action="ongoingAuctions.xhtml"/><br/>
+					<table class="table">
+						<ui:repeat var="twoItems" value="#{ongoingAuctionsBean.dataAuctions}">
+							<tr style="width:100%;">
+								<td style="width:50%;">
+									<h:outputText class="h1" value="#{twoItems.item1.name}"/>
+									<table>
+										<tr>
+											<td style="width:50%;">
+												<h:panelGrid columns="2">
+													<h:outputText value="Category:" styleClass="label"></h:outputText>
+													<h:outputText value="#{twoItems.item1.category}"/>
+													<h:outputText value="Price:" styleClass="label"></h:outputText>
+													<h:outputText value="#{twoItems.item1.getHighestBidValue()}"/>
+													<h:outputText value="Start Date:" styleClass="label"></h:outputText>
+													<h:outputText value="#{twoItems.item1.startDate}"/>
+													<h:outputText value="End Date:" styleClass="label"></h:outputText>
+													<h:outputText value="#{twoItems.item1.endDate}"/>
+												</h:panelGrid>
+											</td>
+											<td style="width:50%;">
+												<br/>
+												<h:graphicImage class="image" value="#{twoItems.item1.getImagePath()}"/><br/>
+											</td>
+										</tr>
+									</table>
+									<h:commandButton class="button" value="view" actionListener="#{auctionViewBean.setItemActionListener(twoItems.item1.getStringId(), generalBean.getOnoingAuctionsSource())}" action="auctionView.xhtml"/>
+								</td>
+								<td style="width:50%;">
+									<h:panelGroup rendered="#{twoItems.item2.isNotNull()}">
+										<h:outputText class="h1" value="#{twoItems.item2.name}"/>
+										<table>
+											<tr>
+												<td style="width:50%;">
+													<h:panelGrid columns="2">
+														<h:outputText value="Category:" styleClass="label"></h:outputText>
+														<h:outputText value="#{twoItems.item2.category}"/>
+														<h:outputText value="Price:" styleClass="label"></h:outputText>
+														<h:outputText value="#{twoItems.item2.getHighestBidValue()}"/>
+														<h:outputText value="Start Date:" styleClass="label"></h:outputText>
+														<h:outputText value="#{twoItems.item2.startDate}"/>
+														<h:outputText value="End Date:" styleClass="label"></h:outputText>
+														<h:outputText value="#{twoItems.item2.endDate}"/>
+													</h:panelGrid>
+												</td>
+												<td style="width:50%;">
+													<br/>
+													<h:graphicImage class="image" value="#{twoItems.item2.getImagePath()}"/><br/>
+												</td>
+											</tr>
+										</table>
+										<h:commandButton class="button" value="view" actionListener="#{auctionViewBean.setItemActionListener(twoItems.item2.getStringId(), generalBean.getOnoingAuctionsSource())}" action="auctionView.xhtml"/>
+									</h:panelGroup>
+								</td>
+							</tr>
+						</ui:repeat>
+					</table>
+					<h:outputText class="h1" value="Looks like there are no ongoing auctions ):" rendered="#{ongoingAuctionsBean.isEmpty()}"/><br/>
+					<h:commandButton class="button" style="width:100px; margin:5px;" value="&#8249;" type="submit" update="form" actionListener="#{ongoingAuctionsBean.prevPage()}" action="ongoingAuctions.xhtml" rendered="#{ongoingAuctionsBean.isNotEmpty()}"/>
+					<h:commandButton class="button" style="width:100px; margin:5px;" value="&#8250;" type="submit" update="form" actionListener="#{ongoingAuctionsBean.nextPage()}" action="ongoingAuctions.xhtml" rendered="#{ongoingAuctionsBean.isNotEmpty()}"/><br/><br/>
+	    		</h:form>
+    		</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>

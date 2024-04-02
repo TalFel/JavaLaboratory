@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	<ui:composition template="/WEB-INF/templates/master.xhtml">
+			<ui:define name="content">
+				<h:form id="form">
+	    			<h1>Profile</h1>
+	    			<h:panelGrid columns="2">
+						<h:outputText value="CellPhone: " style="h1"/>
+						<h:outputText value="#{generalBean.user.cellNumber}" style="h1"/>
+						<h:outputText value="email: " style="h1"/>
+						<h:outputText value="#{generalBean.user.email}" style="h1"/>
+						<h:outputText value="full name: " style="h1"/>
+						<h:outputText value="#{generalBean.user.fullName}" style="h1"/>
+					</h:panelGrid>
+	    		</h:form>
+    		</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>

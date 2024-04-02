@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	<ui:composition template="/WEB-INF/templates/master.xhtml">
+			<ui:define name="content">
+				<h:form id="form">
+	    			<div style="width:100%;">
+						<h:commandButton class="goBack" value="&#8249;" immediate="true" action="auctionView.xhtml"/><br/>
+					</div>
+	    			<h:outputText class="h1" value="Auto Bidding for - #{auctionViewBean.selected.name}"/><br/>
+					<h:outputText value="Highest Bid: #{auctionViewBean.getSelectedItemMaxBidString()}"/><br/><br/>
+					<h:outputText value="An automatic bid is a different kind of bid,"/><br/>
+					<h:outputText value="every time a user will place a bid higher than yours -"/><br/>
+					<h:outputText value="the system will automaticly out-bid it."/><br/><br/>
+					<h:outputText value="place a new automatic bid: "/>
+					<h:outputText value=" (next legal price- #{auctionViewBean.getNextLegalAutoBid()})"/><br/><br/>
+					<p:inputText value="#{auctionViewBean.autoBid}"/><br/><br/>
+					<h:commandButton class="button" value="confirm" action="#{auctionViewBean.placeAutoBid()}"/><br/>
+					<h:outputText value="value is smaller than an existing auto-bid." rendered="#{auctionViewBean.isIllegalAutoBid}"/><br/><br/>
+					<h:outputText value="you already have an automatic bid with value- #{auctionViewBean.getCurrentAutoBidValue()}" rendered="#{auctionViewBean.doesHaveAutoBid()}"/>
+					<h:commandButton class="button" style="width:100px; margin:5px;" value="terminate" update="@form" actionListener="#{auctionViewBean.terminateAutoBid()}" rendered="#{auctionViewBean.doesHaveAutoBid()}"/>
+	    		</h:form>
+    		</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>

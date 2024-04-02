@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	<ui:composition template="/WEB-INF/templates/master.xhtml">
+			<ui:define name="content">
+				<h:form id="form" style="width:100%;" enctype="multipart/form-data">
+	    			<h1>New Auction</h1>
+	    			<table style="width:100%;">
+		    			<tr style="width:100%;">
+		    				<td style="width:50%;">
+			    				<h:outputText value="Name:" style="h1"/><br/>
+				    			<p:inputText id="nameInput" value="#{newAuctionBean.item.name}" required="true" requiredMessage="required" validatorMessage="Name must be 3-15 characters long">
+				    				<f:validateLength minimun="3" maximum="15"/>
+				    			</p:inputText><br/>
+				    			<p:message for="nameInput"/><br/>
+				    			<h:outputText value="Category:" style="h1"/><br/>
+				    			<p:inputText id="categoryInput" value="#{newAuctionBean.item.category}" required="true" requiredMessage="required" validatorMessage="Category name must be 3-15 characters long">
+				    				<f:validateLength minimun="3" maximum="15"/>
+				    			</p:inputText><br/>
+				    			<p:message for="categoryInput"/><br/>
+				    			<h:outputText value="Desciption:" style="h1"/><br/>
+				    			<p:inputText id="descriptionInput" value="#{newAuctionBean.item.description}" required="true" requiredMessage="required" validatorMessage="Description is required!">
+				    			</p:inputText><br/>
+				    			<p:message for="descriptionInput"/><br/>
+				    			<h:outputText value="Price:" style="h1"/><br/>
+				    			<p:inputText id="priceInput" value="#{newAuctionBean.startPrice}" required="true" requiredMessage="required" validatorMessage="Price must be a whole number!">
+				    				<f:validateRegex pattern="^[1-9]\d*$"/>
+				    			</p:inputText><br/>
+				    			<p:message for="priceInput"/><br/>
+		    				</td>
+		    				<td style="width:50%;">
+		    					<h:outputText value="End Date:" style="h1"/><br/>
+				    			<p:datePicker id="dateInput" value="#{newAuctionBean.item.endDate}" mindate="#{newAuctionBean.today()}" required="true" requiredMessage="required" showIcon="true"/><br/>
+				    			<p:message for="dateInput"/><br/>
+			    				<h:outputText value="Upload Image" style="h1"/><br/>
+				    			<p:fileUpload value="#{newAuctionBean.image}" multiple="false" mode="simple" skinSimple="true" required="true" requiredMessage="required"/><br/><br/>
+								<p:selectBooleanCheckbox value="#{newAuctionBean.waiver}" action="newAuction.xhtml"/><h:outputText value=" Include a waiver price:" style="h1"/><br/><br/>
+								<p:inputText id="waiverInput" rendered="#{newAuctionBean.waiver}" value="#{newAuctionBean.waiverValue}" validatorMessage="Price must be a whole number!">
+									<f:validateRegex pattern="^\s*|[1-9]\d*$"/>
+								</p:inputText><br/>
+								<p:message for="waiverInput"/><br/>
+		    				</td>
+		    			</tr>
+	    			</table>
+	    			<h:commandButton id="confirmItem" type="submit" ajax="false" update="form" value="Confirm!" action="#{newAuctionBean.confirmNewItem()}" class="button"/><br/>
+	    		</h:form>
+    		</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>
